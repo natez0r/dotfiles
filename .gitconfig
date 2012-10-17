@@ -1,0 +1,27 @@
+[user]
+	name = 
+	email = 
+[core]
+	editor = vim
+[color]
+	ui = auto
+[merge]
+	tool = opendiff
+[diff]
+	tool = opendiff
+[alias]
+  c = commit
+  co = checkout
+  s = status
+  r = rebase
+  m = merge
+  l = log
+  p = push origin
+  up = !git fetch && git remote prune origin
+  prune = remote prune origin
+  re = reset --hard HEAD
+  f = fetch
+  d = diff
+  b = branch
+  ba = branch -a
+  lp = !git log --format=format:"%s"  
