@@ -1,6 +1,6 @@
 [user]
-	name = 
-	email = 
+	name = Nate Roy
+	email = nateroy@scvngr.com
 [core]
 	editor = vim
 [color]
@@ -22,6 +22,11 @@
   re = reset --hard HEAD
   f = fetch
   d = diff
+  ds = diff --staged --color-words
   b = branch
   ba = branch -a
   lp = !git log --format=format:"%s"  
+  files = show --pretty="format:" --name-only
+  su = submodule update
+  si = submodule init
+  res = reset
