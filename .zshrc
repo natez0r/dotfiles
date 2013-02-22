@@ -34,11 +34,14 @@ plugins=(git textmate rails ruby github osx rvm)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/Users/nate/android-sdks/tools/:/Users/nate/android-sdks/platform-tools/:/Users/nate//android-ndk/android-ndk-r7b/:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin
+export PATH=~/bin:/Users/nate/android-sdks/tools:/Users/nate/android-sdks/platform-tools:/Users/nate/android-ndk/android-ndk-r7b:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin
 
 # add RVM to the path in the right place
 source ~/.rvm/scripts/rvm
 
+export ANDROID_HOME=~/android-sdks
+
+alias g="git"
 alias uninstall_merchant="adb uninstall com.scvngr.levelup.merchant.app"
 alias uninstall_consumer="adb uninstall com.scvngr.levelup.app"
 alias src="cd ~/Documents/src"
@@ -53,9 +56,33 @@ alias co="git checkout"
 alias status="git status"
 alias hard_reset="git reset --hard head"
 alias staging_console="heroku console --app levelup-staging"
-alias logcat="adb logcat -v time | grep -v dalvikvm"
+alias logcat="adb -d logcat ActivityManager:I AndroidRuntime:E StrictMode:E LevelUp:D \*:S"
 alias server="cd ~/Documents/src/levelup/"
 alias ctags=/usr/local/bin/ctags
+
+# App logging per device
+function leveluplogwithdevice() { adb "$@" logcat LevelUp:V sweetgreen:V sweetgreen-dev:V sweetgreen-staging:V StrictMode:V ActivityThread:E AndroidRuntime:E \*:S;}
+alias leveluplog='leveluplogwithdevice'
+alias leveluplogemulator='leveluplogwithdevice -e'
+alias leveluplogdna='leveluplogwithdevice -s FA2BTS506540'
+alias leveluploggalaxynexus='leveluplogwithdevice -s 0149C2DB0801D007'
+alias leveluplognexusone='leveluplogwithdevice -s HT9CYP804774'
+alias leveluplograzr='leveluplogwithdevice -s TA648025OR'
+alias leveluplogrise='leveluplogwithdevice -s 728577c'
+alias leveluplogthunderbolt='leveluplogwithdevice -s HT15MS000470'
+alias leveluplogx=' leveluplogwithdeviceadb -s 015D8AFA1501C00A'
+alias leveluplognexusfour='leveluplogwithdevice -s 0030129f5f8b621b'
+
+# adb per device
+function adbdna() { adb -s FA2BTS506540 "$@" ;}
+function adbemulator() { adb -e "$@" ;}
+function adbgalaxynexus() { adb -s 0149C2DB0801D007 "$@" ;}
+function adbnexusone() { adb -s HT9CYP804774 "$@" ;}
+function adbrazr() { adb -s TA648025OR "$@" ;}
+function adbrise() { adb -s 728577c "$@" ;}
+function adbthunderbolt() { adb -s HT15MS000470 "$@" ;}
+function adbx() { adb -s 015D8AFA1501C00A "$@" ;}
+function adbnexusfour() { adb -s 0030129f5f8b621b "$@" ;}
 
 reset-db () {
   # check this is a Rails-like environment
@@ -76,7 +103,7 @@ reset-db () {
 }
 
 # Run tests matching pattern in file
-# Usage: t <filename> <pattern>                                                                                                                                                                                 
+# Usage: t <filename> <pattern>
 function t {
   local filename="$1"
   shift

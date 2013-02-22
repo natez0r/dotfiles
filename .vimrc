@@ -6,6 +6,7 @@ let mapleader=',' " leader for custom commands
 nmap <silent> <leader>/ :nohlsearch<CR>
 " Strip trailing whitespace
 nnoremap <leader>rstrip :call <SID>StripTrailingWhitespaces()<CR>
+map <Leader>rt :!ctags --extra=+f -a --exclude=.git --exclude=log -R * `rvm gemdir`/gems/*<CR><CR>
 
 set ruler " show column numbers
 set hlsearch "highlight search results
