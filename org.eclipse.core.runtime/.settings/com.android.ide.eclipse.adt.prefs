@@ -1,0 +1,8 @@
+com.android.ide.eclipse.adt.customDebugKeyStore=/Users/nate/Documents/src/whitelabel-android-sdk/tools/debug.keystore
+com.android.ide.eclipse.adt.fixLegacyEditors=1
+com.android.ide.eclipse.adt.lintOnExport=false
+com.android.ide.eclipse.adt.lintOnSave=false
+com.android.ide.eclipse.adt.sdk=/Users/nate/android-sdks
+com.android.ide.eclipse.adt.skipLintLibs=true
+com.android.ide.eclipse.adt.xmlEditor=true
+eclipse.preferences.version=1
