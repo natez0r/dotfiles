@@ -3,12 +3,15 @@
 	email = nateroy@scvngr.com
 [core]
 	editor = vim
+	excludesfile = /Users/nate/.gitignore_global
 [color]
 	ui = auto
 [merge]
-	tool = opendiff
+	tool = diffmerge
 [diff]
-	tool = opendiff
+	tool = diffmerge
+[show]
+  tool = less -N
 [alias]
   c = commit
   co = checkout
