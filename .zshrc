@@ -40,38 +40,28 @@ export PATH=~/bin:/Users/nate/android-sdks/tools:/Users/nate/android-sdks/platfo
 source ~/.rvm/scripts/rvm
 
 export ANDROID_HOME=~/android-sdks
+export TEST_ENV_NUMBER=8
+# Ruby config
+export RUBY_GC_MALLOC_LIMIT=1000000000
+export RUBY_FREE_MIN=500000
+export RUBY_HEAP_MIN_SLOTS=40000
 
 alias g="git"
-alias uninstall_merchant="adb uninstall com.scvngr.levelup.merchant.app"
-alias uninstall_consumer="adb uninstall com.scvngr.levelup.app"
 alias src="cd ~/Documents/src"
-alias consumer="cd ~/Documents/src/levelup-android"
-alias merchant="cd ~/Documents/src/levelup-android-merchant"
-alias updater_build="ant clean; ant release; adb install -r bin/levelup-merchant-updater-release.apk"
 alias bake="bundle exec rake"
 alias b="bundle exec"
 alias bs="b rails server"
 alias bc="b rails console"
-alias co="git checkout"
-alias status="git status"
-alias hard_reset="git reset --hard head"
-alias staging_console="heroku console --app levelup-staging"
-alias logcat="adb -d logcat ActivityManager:I AndroidRuntime:E StrictMode:E LevelUp:D \*:S"
-alias server="cd ~/Documents/src/levelup/"
+alias sc="spring console"
 alias ctags=/usr/local/bin/ctags
+alias generate_ctags="ctags -f tags --extra=+f -a --exclude=.git --exclude=log -R * `rvm gemdir`/gems/*"
+alias st="spring testunit"
+alias sr="spring rspec"
+alias vim='mvim -v'
 
-# App logging per device
-function leveluplogwithdevice() { adb "$@" logcat LevelUp:V sweetgreen:V sweetgreen-dev:V sweetgreen-staging:V StrictMode:V ActivityThread:E AndroidRuntime:E \*:S;}
-alias leveluplog='leveluplogwithdevice'
-alias leveluplogemulator='leveluplogwithdevice -e'
-alias leveluplogdna='leveluplogwithdevice -s FA2BTS506540'
-alias leveluploggalaxynexus='leveluplogwithdevice -s 0149C2DB0801D007'
-alias leveluplognexusone='leveluplogwithdevice -s HT9CYP804774'
-alias leveluplograzr='leveluplogwithdevice -s TA648025OR'
-alias leveluplogrise='leveluplogwithdevice -s 728577c'
-alias leveluplogthunderbolt='leveluplogwithdevice -s HT15MS000470'
-alias leveluplogx=' leveluplogwithdeviceadb -s 015D8AFA1501C00A'
-alias leveluplognexusfour='leveluplogwithdevice -s 0030129f5f8b621b'
+# App logging 
+function androidlogwithdevice() { adb "$@" logcat AppName:V StrictMode:V ActivityThread:E AndroidRuntime:E \*:S;}
+alias leveluplog='androidlogwithdevice'
 
 # adb per device
 function adbdna() { adb -s FA2BTS506540 "$@" ;}
@@ -103,7 +93,7 @@ reset-db () {
 }
 
 # Run tests matching pattern in file
-# Usage: t <filename> <pattern>
+# Usage: t <filename> <pattern>                                                                                                                                                                                 
 function t {
   local filename="$1"
   shift
@@ -119,3 +109,7 @@ function hl {
 function hc {
   heroku run console --app levelup-"$@"
 }
+
+#Personal
+function logcat() { adb "$@" logcat StrictMode:V ActivityThread:E AndroidRuntime:E \    *:S;}
+
