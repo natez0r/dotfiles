@@ -1,15 +1,16 @@
 [user]
 	name = Nate Roy
-	email = nroywpi@gmail.com 
+	email = nroywpi@gmail.com
 [core]
 	editor = vim
-	excludesfile = /Users/nate/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [color]
 	ui = auto
 [merge]
 	tool = diffmerge
 [diff]
 	tool = diffmerge
+	renames = true
 [show]
   tool = less -N
 [alias]
@@ -20,7 +21,7 @@
   m = merge
   l = log
   p = push origin
-  up = !git fetch && git remote prune origin
+  up = fetch
   prune = remote prune origin
   re = reset --hard HEAD
   f = fetch
@@ -33,3 +34,4 @@
   su = submodule update
   si = submodule init
   res = reset
+  history = log --follow -p
