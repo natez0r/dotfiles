@@ -1,0 +1,1 @@
+export PROMPT="[%D{%H:%M:%S}]$PROMPT"
