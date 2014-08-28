@@ -29,9 +29,14 @@
   ds = diff --staged --color-words
   b = branch
   ba = branch -a
-  lp = !git log --format=format:"%s"  
+  lp = !git log --format=format:"%s"
   files = show --pretty="format:" --name-only
   su = submodule update
   si = submodule init
   res = reset
   history = log --follow -p
+	stat = !git diff --stat HEAD^ HEAD
+	track-upstream = branch --set-upstream-to=origin/
+	rebase-on-new-master = !git fetch && git rebase -i origin/master
+	stage-deleted = !git rm $(git ls-files --deleted)
+	recent-branches = for-each-ref --sort=-committerdate --count=10 --format="%(refname:short)" refs/heads/
